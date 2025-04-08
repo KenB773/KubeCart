@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubecart
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: kubecart
+  template:
+    metadata:
+      labels:
+        app: kubecart
+    spec:
+      containers:
+      - name: kubecart
+        image: <your-dockerhub-username>/kubecart:latest
+        ports:
+        - containerPort: 5000
