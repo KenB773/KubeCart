@@ -14,3 +14,6 @@ Python, Flask, Docker, Kubernetes, EKS, eksctl
 ## Endpoints
 - `/` – Returns a greeting
 - `/health` – Health check
+
+# KubeCart
+A containerized Flask microservice deployed to AWS EKS using Kubernetes, showcasing cloud-native deployment, Docker, and infrastructure automation.
