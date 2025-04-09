@@ -1,12 +1,19 @@
-# 🚀 KubeCart – Flask Microservice on AWS EKS
+# 🚀 KubeCart – Flask Microservice on ~~AWS EKS~~ Google Cloud Run
 
-KubeCart is a minimal Python Flask microservice deployed to AWS using Kubernetes (EKS). It returns JSON responses and includes a health check endpoint, making it perfect for demonstrating cloud-native deployment, containerization, and infrastructure orchestration.
+KubeCart is a minimal Python Flask microservice originally deployed to AWS using Kubernetes (EKS), but moved to Google Cloud Run for cost management (read: free tier). It returns JSON responses and includes a health check endpoint, making it perfect for demonstrating cloud-native deployment, containerization, and infrastructure orchestration.
 
-## 🌐 Live App
+## ~~🌐 Live Deployment~~ (Moved from AWS to Google Cloud's Cloud Run for cost management reasons!)
 
-**Public URL:**  [http://a2a513d41c3964ed9aa41c0269d14c62-1950382880.us-east-1.elb.amazonaws.com/](http://a2a513d41c3964ed9aa41c0269d14c62-1950382880.us-east-1.elb.amazonaws.com/)
+~~**App:**  [http://a2a513d41c3964ed9aa41c0269d14c62-1950382880.us-east-1.elb.amazonaws.com/](http://a2a513d41c3964ed9aa41c0269d14c62-1950382880.us-east-1.elb.amazonaws.com/)~~
 
-**Swagger UI:**  [http://a2a513d41c3964ed9aa41c0269d14c62-1950382880.us-east-1.elb.amazonaws.com/swagger](http://a2a513d41c3964ed9aa41c0269d14c62-1950382880.us-east-1.elb.amazonaws.com/swagger)
+~~**Swagger UI:**  [http://a2a513d41c3964ed9aa41c0269d14c62-1950382880.us-east-1.elb.amazonaws.com/swagger](http://a2a513d41c3964ed9aa41c0269d14c62-1950382880.us-east-1.elb.amazonaws.com/swagger)~~
+
+## 🌐 Live Deployment (Google Cloud Run)
+
+**App:** [https://kubecart-812353429065.us-east1.run.app/)](https://kubecart-812353429065.us-east1.run.app/)  
+**Swagger UI:** [https://kubecart-812353429065.us-east1.run.app/swagger](https://kubecart-812353429065.us-east1.run.app/swagger)
+**Health Check:** [https://kubecart-812353429065.us-east1.run.app/health](https://kubecart-812353429065.us-east1.run.app/health)
+
 
 - `/` → Main endpoint  
 - `/health` → Health check
@@ -17,7 +24,11 @@ KubeCart is a minimal Python Flask microservice deployed to AWS using Kubernetes
 - `DELETE /cart/remove`
 - `POST /cart/checkout`
 
-## 🧱 Tech Stack
+**Cloud Deployments**
+- **Google Cloud Run** – Final production deployment (serverless, HTTPS, scalable)
+- **AWS EKS (Elastic Kubernetes Service)** – Initial cluster-based deployment (retired)
+
+## 🧱 Tech Stack (entire project)
 
 - **Flask + Flask-RESTX (formerly Gunicorn)** – Python microservice + Swagger docs
 - **Docker** – Containerized image
@@ -25,6 +36,8 @@ KubeCart is a minimal Python Flask microservice deployed to AWS using Kubernetes
 - **AWS CloudFormation + IAM** – Infra as code via `eksctl`
 - **Load Balancer** – Auto-provisioned for public access
 - **kubectl** – Manual deployment and rollout control
+- **Cloud Build / GCloud CLI** – Deployed images to Cloud Run
+- **Cloud Run Logs** – Debugged application behavior and routing issues
 
 ## 📦 Project Structure
 
@@ -47,7 +60,7 @@ kube-flask-eks/
 
 ```
 
-## 🗺️ Architecture Diagram
+## 🗺️ Architecture Diagram (retired)
 
 ```text
 ┌──────────────────────────────────────┐
@@ -103,6 +116,30 @@ kube-flask-eks/
                └────────────────┘
 ```
 
+## 📐 Architecture Diagram (active)
+
+```text
+     ┌──────────────────────────────┐
+     │   Local Development          │
+     │   - Flask + RESTX            │
+     │   - Docker Desktop           │
+     └────────────┬────────────────┘
+                  ▼
+     ┌──────────────────────────────┐
+     │ Docker Hub (Image Hosting)   │
+     └────────────┬────────────────┘
+                  ▼
+     ┌──────────────────────────────┐
+     │ Google Cloud Run             │
+     │ - HTTPS endpoint             │
+     │ - Serverless Flask API       │
+     └────────────┬────────────────┘
+                  ▼
+     ┌──────────────────────────────┐
+     │ User Browser / API Client    │
+     │ - Calls /swagger, /cart, etc │
+     └──────────────────────────────┘
+
 ## 📌 Highlights
 
 - Built a Dockerized Python app and hosted it via Kubernetes
@@ -116,5 +153,8 @@ kube-flask-eks/
 
 - IAM policies must be carefully configured for eksctl + EKS
 - Kubernetes services expose pods via a load balancer or cluster IP
-- Debugging `InvalidImageName` and `403` errors is part of real dev life
-- But the manual `kubectl set image` rollout used to troubleshoot stale container caching - I don't think I've ever been quite so frustrated during a debug 🙃
+- Debugging `InvalidImageName` and `403` errors is part of real dev life...
+- ...But the manual `kubectl set image` rollout used to troubleshoot stale container caching - I don't think I've ever been quite so frustrated during a debug 🙃
+- Migrating from EC2-based EKS to serverless Cloud Run for simplified hosting
+- Debugging persistent 404 issues using route isolation (Blueprints)
+- Working with multiple cloud providers and container registries
