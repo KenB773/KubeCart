@@ -4,11 +4,9 @@ KubeCart is a minimal Python Flask microservice deployed to AWS using Kubernetes
 
 ## 🌐 Live App
 
-**Public URL:**  
-[http://a2a513d41c3964ed9aa41c0269d14c62-1950382880.us-east-1.elb.amazonaws.com/](http://a2a513d41c3964ed9aa41c0269d14c62-1950382880.us-east-1.elb.amazonaws.com/)
+**Public URL:**  [http://a2a513d41c3964ed9aa41c0269d14c62-1950382880.us-east-1.elb.amazonaws.com/](http://a2a513d41c3964ed9aa41c0269d14c62-1950382880.us-east-1.elb.amazonaws.com/)
 
-**Swagger UI:**
-[http://a2a513d41c3964ed9aa41c0269d14c62-1950382880.us-east-1.elb.amazonaws.com/swagger](http://a2a513d41c3964ed9aa41c0269d14c62-1950382880.us-east-1.elb.amazonaws.com/swagger)
+**Swagger UI:**  [http://a2a513d41c3964ed9aa41c0269d14c62-1950382880.us-east-1.elb.amazonaws.com/swagger](http://a2a513d41c3964ed9aa41c0269d14c62-1950382880.us-east-1.elb.amazonaws.com/swagger)
 
 - `/` → Main endpoint  
 - `/health` → Health check
