@@ -12,7 +12,7 @@ KubeCart is a minimal Python Flask microservice originally deployed to AWS using
 
 **App:** [https://kubecart-812353429065.us-east1.run.app/)](https://kubecart-812353429065.us-east1.run.app/)  
 **Swagger UI:** [https://kubecart-812353429065.us-east1.run.app/swagger](https://kubecart-812353429065.us-east1.run.app/swagger)
-**Health Check:** [https://kubecart-812353429065.us-east1.run.app/health](https://kubecart-812353429065.us-east1.run.app/health)
+  **Health Check:** [https://kubecart-812353429065.us-east1.run.app/health](https://kubecart-812353429065.us-east1.run.app/health)
 
 
 - `/` → Main endpoint  
